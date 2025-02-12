@@ -1,0 +1,25 @@
+<div class="container">
+    <h2>Login History</h2>
+    <p>Username: {{session.user.userName}}<br>
+    Email: {{session.user.email}}</p>
+    {{#if session.user.loginHistory.length}}
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th style="text-align: center;">Login Date/Time</th>
+                    <th style="text-align: center;">Browser Information</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each session.user.loginHistory}}
+                    <tr>
+                        <td>{{this.dateTime}}</td>
+                        <td>{{this.userAgent}}</td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    {{else}}
+        <p>No login history.</p>
+    {{/if}}
+</div>
