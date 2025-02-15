@@ -40,7 +40,12 @@ function initialize() {
 
 function getAllItems() {
     return new Promise((resolve, reject) => {
-        Item.findAll()
+        Item.findAll({
+          include: [{
+            model: Category,
+            attributes: ['category']
+          }]
+        })
         .then((items) => {
           if (items.length > 0) {
             resolve(items);
@@ -116,7 +121,11 @@ function getItemsByCategory(category) {
         Item.findAll({
             where: {
               category: category
-            }
+            },
+            include: [{
+              model: Category,
+              attributes: ['category']
+            }]
           })
         .then((items) => {
           if (items.length > 0) {
@@ -159,7 +168,11 @@ function getItemById(id) {
         Item.findAll({
             where: {
               id: id
-            }
+            },
+            include: [{
+              model: Category,
+              attributes: ['category']
+            }]
           })
         .then((items) => {
           if (items.length > 0) {
